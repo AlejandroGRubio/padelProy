@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Personas;
 
 class Persona
 {
@@ -9,11 +9,16 @@ class Persona
     private string $nombre;
     private string $apellidos;
     private string $telefono;
+    private string $correo;
+    private string $contrasenya;
 
-    public function __construct(string $dni, string $nombre, string $apellidos){
+    public function __construct(string $dni, string $nombre, string $apellidos, string $correo, string $contrasenya, string $telefono=''){
         $this->dni=$dni;
         $this->nombre=$nombre;
         $this->apellidos=$apellidos;
+        $this->correo=$correo;
+        $this->contrasenya=$contrasenya;
+        $this->telefono=$telefono;
     }
 
     public function setDNI(string $dni):Persona{
@@ -23,6 +28,38 @@ class Persona
 
     public function getDni(): string{
         return $this->dni;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCorreo(): string
+    {
+        return $this->correo;
+    }
+
+    /**
+     * @param string $correo
+     */
+    public function setCorreo(string $correo): void
+    {
+        $this->correo = $correo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContrasenya(): string
+    {
+        return $this->contrasenya;
+    }
+
+    /**
+     * @param string $contrasenya
+     */
+    public function setContrasenya(string $contrasenya): void
+    {
+        $this->contrasenya = $contrasenya;
     }
 
     /**

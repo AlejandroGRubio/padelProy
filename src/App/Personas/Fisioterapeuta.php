@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Personas;
 
 class Fisioterapeuta extends Empleado{
 
@@ -10,9 +10,9 @@ class Fisioterapeuta extends Empleado{
     /**
      * @param $clienteVIP
      */
-    public function __construct(string $nombre, string $apellidos, string $dni, string $direccion, string $cuentaCorriente, string $numSeguridadSocial, Jugador $clienteVIP)
+    public function __construct(string $nombre, string $apellidos, string $dni, string $correo, string $contrasenya, string $telefono=null, string $direccion, string $cuentaCorriente, string $numSeguridadSocial, Jugador $clienteVIP)
     {
-        parent::__construct($dni, $nombre, $apellidos, $direccion, $cuentaCorriente, $numSeguridadSocial);
+        parent::__construct($dni, $nombre, $apellidos, $correo, $contrasenya, $telefono, $direccion, $cuentaCorriente, $numSeguridadSocial);
         $this->clienteVIP = $clienteVIP;
     }
 

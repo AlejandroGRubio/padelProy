@@ -1,6 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Personas;
+
+use App\LadoPreferido;
+
+include __DIR__."/../../autoload.php";
+
 
 class Jugador extends Persona{
 
@@ -29,21 +34,13 @@ class Jugador extends Persona{
      * @param $mixtas
      * @param $socio
      */
-    public function __construct(string $dni, string $nombre, string $apellidos,int $nivelJuego, $manoHabil, $ladoPreferido, $indiceDeIrresponsabilidad, $numFederacion, $horarioMensualPreferido, $renovacionAutomaticaHorario, $fisioAsociado, $entrenadorPersonal, $mixtas, $socio)
+    public function __construct(string $dni, string $nombre, string $apellidos, string $correo, string $contrasenya, string $telefono=null, int $nivelJuego, $manoHabil, $ladoPreferido, $indiceDeIrresponsabilidad, $numFederacion, $horarioMensualPreferido, $renovacionAutomaticaHorario, $fisioAsociado, $entrenadorPersonal, $mixtas, $socio)
     {
-        parent::__construct($dni, $nombre, $apellidos);
+        parent::__construct($dni, $nombre, $apellidos, $correo, $contrasenya, $telefono);
 
         $this->nivelJuego = $nivelJuego;
         $this->manoHabil = $manoHabil;
         $this->ladoPreferido = $ladoPreferido;
-        $this->indiceDeIrresponsabilidad = $indiceDeIrresponsabilidad;
-        $this->numFederacion = $numFederacion;
-        $this->horarioMensualPreferido = $horarioMensualPreferido;
-        $this->renovacionAutomaticaHorario = $renovacionAutomaticaHorario;
-        $this->fisioAsociado = $fisioAsociado;
-        $this->entrenadorPersonal = $entrenadorPersonal;
-        $this->mixtas = $mixtas;
-        $this->socio = $socio;
     }
 
     /**

@@ -12,10 +12,10 @@ class Entrenador extends Empleado{
      * @param $nivelEntrenador
      * @param $numFederacion
      */
-    public function __construct(string $nombre, string $apellidos, string $dni, string $direccion, string $cuentaCorriente, string $numSeguridadSocial, int $nivelEntrenador, int $numFederacion){
+    public function __construct(string $nombre, string $apellidos, string $dni, string $correo, string $contrasenya, string $telefono=null,string $direccion, string $cuentaCorriente, string $numSeguridadSocial, int $nivelEntrenador, int $numFederacion){
 
 
-        parent::__construct($dni, $nombre, $apellidos, $direccion, $cuentaCorriente, $numSeguridadSocial);
+        parent::__construct($dni, $nombre, $apellidos, $direccion, $correo, $contrasenya, $telefono, $cuentaCorriente, $numSeguridadSocial);
 
         $this->nivelEntrenador = $nivelEntrenador;
         $this->numFederacion = $numFederacion;
