@@ -3,9 +3,13 @@
 namespace Controlador\Personas;
 
 use App\Personas\Persona;
+use Modelo\Excepciones\actualizarPersonasException;
+use Modelo\Excepciones\PersonaNoEncontradaException;
+use Controlador\Excepciones\ParametrosDePersonaIncorrectosException;
 use Modelo\Personas\PersonaDAO;
 use Modelo\Personas\PersonaDAOMySql;
 use Vista\Personas\personaVista;
+
 
 class PersonaControlador
 {
@@ -42,6 +46,171 @@ class PersonaControlador
     }
 
 
+    public function login(){
+        echo "Esta es la página de login";
+    }
+
+    public function mostrar($dni){
+
+        if (isset($dni)){
+            try {
+                $this->mostrarDatosPersonaAPI($dni);
+            }
+            catch (PersonaNoEncontradaException $e){
+                //TODO implementar respuesta http
+                echo "No existe la persona buscada" .$e->getMessage();
+            }
+
+        }
+        else{
+            $this->mostrarTodasLasPersonasAPI();
+        }
+
+        //echo json_encode($this->modelo->leerTodasLasPersonas());
+    }
+    private function mostrarTodasLasPersonasAPI(){
+
+        echo json_encode($this->modelo->leerTodasLasPersonas(), JSON_PRETTY_PRINT);
+
+    }
+
+    private function mostrarDatosPersonaAPI($dni){
+        echo json_encode($this->modelo->leerPersona($dni), JSON_PRETTY_PRINT);
+    }
+
+    public function guardar(){
+
+        $respuestaControlPersona = $this->comprobarDatosPersonaCorrectos("post");
+
+        if (is_bool($respuestaControlPersona)){
+            $persona = new Persona($_POST['dni'], $_POST['nombre'], $_POST['apellidos'], $_POST['correo'], password_hash($_POST['contrasenya'], PASSWORD_DEFAULT));
+
+            if (isset($_POST['telefono'])){
+                $persona->setTelefono($_POST['telefono']);
+            }
+            $this->modelo->insertarPersona($persona);
+        }
+        else{
+            $mensajeError = "Error en los siguientes campos ";
+            foreach ($respuestaControlPersona as $error){
+                $mensajeError .= "Error en el parámetro " .$error ."<br>";
+            }
+            throw new ParametrosDePersonaIncorrectosException($mensajeError);
+        }
+
+
+
+    }
+
+    private function comprobarDatosPersonaCorrectos($metodo):array|bool{
+        $arrayFallos = array();
+        if ($metodo == 'post'){
+            if (!isset($_POST['dni'])){
+                $arrayFallos[]='dni';
+            }
+            if (!isset($_POST['nombre'])){
+                $arrayFallos[]='nombre';
+            }
+            if (!isset($_POST['apellidos'])){
+                $arrayFallos[]='apellidos';
+            }
+            if (!isset($_POST['correo'])){
+                $arrayFallos[]='correo';
+            }
+            if (!isset($_POST['contrasenya'])){
+                $arrayFallos[]='contrasenya';
+            }
+
+        }
+        if (count($arrayFallos)>0){
+            return $arrayFallos;
+        }
+        else{
+            return true;
+        }
+
+
+    }
+
+    public function borrar($dni){
+
+        if (isset($dni)){
+            try {
+                $this->modelo->borrarPersonaPorDNI($dni);
+            }catch (PersonaNoEncontradaException $e){
+
+                header("Persona no encontrada", true, 500);
+            }
+
+
+        }
+        else{
+            $this->modelo->borrarTodasLasPersonas();
+
+        }
+
+    }
+
+
+
+    public function modificar($dni){
+        parse_str(file_get_contents("php://input"), $put_vars);
+        if (isset($dni)){
+           // var_dump($put_vars);
+            try {
+                $persona = $this->modelo->leerPersona($dni);
+            }catch (PersonaNoEncontradaException $e){
+                header("Persona no encontrada", true, 404);
+                die;
+            }
+
+            if (isset($put_vars['dni'])){
+                if ($this->modelo->existeDNI($put_vars['dni'])){
+                    header("DNI existente", true, 204);
+                    die;
+                }
+                else{
+                    $persona->setDNI($put_vars['dni']);
+                }
+
+            }
+
+        if (isset($put_vars['nombre'])){
+            $persona->setNombre($put_vars['nombre']);
+        }
+        if (isset($put_vars['apellidos'])){
+            $persona->setApellidos($put_vars['apellidos']);
+        }
+        if (isset($put_vars['telefono'])){
+            $persona->setTelefono($put_vars['telefono']);
+        }
+        if (isset($put_vars['contrasenya'])){
+
+            $persona->setContrasenya(password_hash($put_vars['contrasenya'], PASSWORD_DEFAULT));
+        }
+        if (isset($put_vars['correo'])){
+            if ($this->modelo->existeCorreo($put_vars['correo'])){
+                header("Correo existente", true, 204);
+                die;
+            }
+            else{
+                $persona->setCorreo($put_vars['correo']);
+            }
+            $this->modelo->modificarPersona($persona);
+        }
+        }
+        else{
+            try {
+                $this->modelo->modificarTodasLaPersonas($put_vars);
+            }catch (actualizarPersonasException $e){
+                header($e->getMessage(), true, 204);
+            }
+
+        }
+
+
+
+    }
 
 
 }

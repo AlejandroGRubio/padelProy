@@ -15,6 +15,7 @@
     use Vista\Personas\personaVista;
     use Vista\plantilla\Plantilla;
 
+
     //include_once "App/Personas/Persona.php";
 
 
@@ -24,7 +25,7 @@
         //echo "<p/>";
         $ruta.=".php";
         $ruta= str_replace("\\", "/", $ruta);
-        echo $ruta;
+        //echo $ruta;
         include_once($ruta);
 
 
@@ -127,11 +128,40 @@
 //
 //    echo $vista;
 
-    $controlador = new PersonaControlador();
+    //$controlador = new PersonaControlador();
     //$controlador->crear();
 
-    $controlador->comprobarUsuarioWeb("javi@gmail.com", "1234");
+    //$controlador->comprobarUsuarioWeb("javi@gmail.com", "1234");
 
-//    $plantilla = new Plantilla("NuevaPlantilla");
+//   $plantilla = new Plantilla("NuevaPlantilla");
 //    echo "</br>";
 //    echo $plantilla->generarTodaLaPagina();
+
+
+
+   // echo "<pre>";
+     //   var_dump($_SERVER);
+    //echo  "</pre>";
+
+
+    $router = new router();
+    $router->guardarRutas('get','/', function (){
+        echo "Estoy en el index";
+    });
+    $router->guardarRutas('get','/api/personas', [PersonaControlador::class, "mostrar"]);
+    $router->guardarRutas('post','/api/personas', [PersonaControlador::class, "guardar"]);
+    $router->guardarRutas('delete','/api/personas', [PersonaControlador::class, "borrar"]);
+    $router->guardarRutas('put','/api/personas', [PersonaControlador::class, "modificar"]);
+
+
+    //  echo $_SERVER["REQUEST_URI"];
+   // echo '</br>';
+   // echo parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+
+    $router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
+
+    if (parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) == "persona"){
+        $persona = new PersonaControlador();
+        $persona->crear();
+    }
+
