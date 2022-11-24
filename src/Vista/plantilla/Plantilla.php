@@ -18,7 +18,7 @@ class Plantilla
     }
 
 
-    public function generarEncabezado($titulo){
+    public function generarEncabezado($titulo , int $num = 0){
 
         //require 'elementos/encabezado_view.php';
         $this->encabezado = "<!doctype html>
@@ -26,7 +26,7 @@ class Plantilla
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
-    <title><?=$titulo?></title>
+    <title>$titulo</title>
 
     <!-- CSS -->
     <link rel='stylesheet' href='Vista/plantilla/assets/css/reset.css'>
@@ -43,10 +43,13 @@ class Plantilla
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
  
 </head>";
+        if ($num != 0){
+            return $this->encabezado;
+        }
 
     }
 
-    public function generarBarraDeNavegacion(){
+    public function generarBarraDeNavegacion(int $num = 0 ){
 
         $this->nav = "<body id='home'>
             <!-- Header -->
@@ -74,9 +77,12 @@ class Plantilla
                     </div>
                 </div>
             </header>";
+        if ($num != 0){
+            return $this->nav;
+        }
     }
 
-    public function generarFooter(){
+    public function generarFooter(int $num = 0){
         $this->footer = "<footer class='wrap'>
                     <div class='grid grid-pad' >
                         <div class='col-1-4'>
@@ -154,6 +160,86 @@ class Plantilla
                     </div>
                 </footer>
                 <!-- End Footer -->";
+        if ($num != 0){
+            return $this->footer;
+        }
+    }
+
+
+    public function generarIndice():string{
+
+        $page = "";
+        $page .= $this->generarEncabezado("indice", 1);
+        $page .= $this->generarBarraDeNavegacion(1);
+        $page .="<div class='parallax-section parallax1'>
+                <div class='grid grid-pad'>
+                    <div class='col-1-1'>
+                         <div class='content content-header' >
+                            <h2>Página principal del Club de pádel</h2>
+                            <p>Apuntate a la mejor web de padel.</p>
+        </div>
+                    </div>
+                </div>
+            </div>";
+        $page .="<div class='wrap services-wrap' id='services'>
+                <section class='grid grid-pad services'>
+                    <h2>Nuestros servicios</h2>
+                    <div class='col-1-4 service-box service-1' >
+                        <div class='content'>
+                            <div class='service-icon'>
+                                <i class='circle-icon icon-heart4'></i>
+                            </div>
+                            <div class='service-entry'>
+                                <h3>Alquila Pistas</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat tellus eget libero pretium, sollicitudin feugiat libero.</p>
+                                <a class='btn read-more' href='#0'>Read More</a>
+        </div>
+                        </div>
+                    </div>
+                    <div class='col-1-4 service-box service-2' >
+                        <div class='content'>
+                            <div class='service-icon'>
+                                <i class='circle-icon icon-star4'></i>
+                            </div>
+                            <div class='service-entry'>
+                                <h3>Entrenadores y Quiropracticos</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat tellus eget libero pretium, sollicitudin feugiat libero.</p>
+                                <a class='btn read-more' href='#0'>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-1-4 service-box service-3'>
+                        <div class='content'>
+                            <div class='service-icon'>
+                                <i class='circle-icon icon-display'></i>
+                            </div>
+                            <div class='service-entry'>
+                                <h3>Torneos diarios</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat tellus eget libero pretium, sollicitudin feugiat libero.</p>
+                                <a class='btn read-more' href='#0'>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-1-4 service-box service-4' >
+                        <div class='content'>
+                            <div class='service-icon'>
+                                <i class='circle-icon icon-user6'></i>
+                            </div>
+                            <div class='service-entry'>
+                                <h3>User Friendly</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat tellus eget libero pretium, sollicitudin feugiat libero.</p>
+                                <a class='btn read-more' href='#0'>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>";
+        $page .= $this->generarFooter(1);
+        return $page;
+
+
+
+
     }
 
     public function generarTodaLaPagina():string{

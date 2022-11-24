@@ -146,7 +146,11 @@
 
     $router = new router();
     $router->guardarRutas('get','/', function (){
-        echo "Estoy en el index";
+        $plantilla = new Plantilla("NuevaPlantilla");
+
+        echo $plantilla->generarIndice();
+
+
     });
     $router->guardarRutas('get','/api/personas', [PersonaControlador::class, "mostrar"]);
     $router->guardarRutas('post','/api/personas', [PersonaControlador::class, "guardar"]);
