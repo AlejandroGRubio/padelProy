@@ -14,6 +14,7 @@
     use Modelo\Personas\PersonaDAOMySql;
     use Vista\Personas\personaVista;
     use Vista\plantilla\Plantilla;
+    use Vista\LoginVista;
 
 
     //include_once "App/Personas/Persona.php";
@@ -153,6 +154,8 @@
 
     });
     $router->guardarRutas('get','/api/personas', [PersonaControlador::class, "mostrar"]);
+    $router->guardarRutas('get', '/login', [LoginVista::class, "mostrarLogin"]);
+    $router->guardarRutas('post', '/logear', [PersonaControlador::class, "recibirDatosLogin"]);
     $router->guardarRutas('post','/api/personas', [PersonaControlador::class, "guardar"]);
     $router->guardarRutas('delete','/api/personas', [PersonaControlador::class, "borrar"]);
     $router->guardarRutas('put','/api/personas', [PersonaControlador::class, "modificar"]);

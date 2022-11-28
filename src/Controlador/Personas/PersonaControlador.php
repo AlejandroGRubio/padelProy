@@ -26,10 +26,23 @@ class PersonaControlador
         $this->vista = new personaVista();
     }
 
+    public function recibirDatosLogin(){
+        if (isset($_POST['correo']) && isset($_POST['contrasenya'])){
+            $this->comprobarUsuarioWeb($_POST['correo'], $_POST['contrasenya']);
+        }else{
+            echo "Parametros de login incorrectos";
+        }
+    }
+
     public function comprobarUsuarioWeb($correo, $contrasenya){
         $persona = $this->modelo->leerPersonaPorCorreo($correo);
-        if (password_verify($contrasenya, $persona->getContrasenya())){
-            echo "de locos";
+        var_dump($persona);
+        echo $contrasenya;
+        if(password_verify($contrasenya, $persona->getContrasenya())){
+            session_start();
+            $_SESSION['logeado'] = true;
+            $_SESSION['usuario'] = $persona->getNombre();
+            echo "<a href='/'>Inicio</a>";
         }
         else{
             echo "f";
