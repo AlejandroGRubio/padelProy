@@ -1,8 +1,8 @@
 <?php
 
-namespace Vista;
+namespace App\Vista;
 
-use Vista\plantilla\Plantilla;
+use App\Vista\plantilla\Plantilla;
 
 class LoginVista
 {

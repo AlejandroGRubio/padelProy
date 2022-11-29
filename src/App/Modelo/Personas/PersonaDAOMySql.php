@@ -1,13 +1,13 @@
 <?php
 
-namespace Modelo\Personas;
+namespace App\Modelo\Personas;
 require_once __DIR__ . "/../../datosConexionDB.php";
 require_once __DIR__ . "/../../datosConfiguracion.php";
 
 use App\Personas\Persona;
 use \PDO;
-use Modelo\Excepciones\PersonaNoEncontradaException;
-use Modelo\Excepciones\actualizarPersonasException;
+use App\Modelo\Excepciones\PersonaNoEncontradaException;
+use App\Modelo\Excepciones\actualizarPersonasException;
 
 class PersonaDAOMySql extends PersonaDAO
 {

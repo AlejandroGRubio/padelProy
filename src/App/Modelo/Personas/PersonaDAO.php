@@ -1,6 +1,6 @@
 <?php
 
-namespace Modelo\Personas;
+namespace App\Modelo\Personas;
 
 use App\Personas\Persona;
 use \PDO;

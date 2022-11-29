@@ -1,15 +1,11 @@
 <?php
 
-namespace Modelo\Excepciones;
+namespace App\Modelo\Excepciones;
 
-
-class PersonaNoEncontradaException extends \Exception
+class actualizarPersonasException extends \Exception
 {
-
 public function __construct(string $message = "", int $code = 0, ?Throwable $previous = null)
 {
     parent::__construct($message, $code, $previous);
 }
-
-
 }

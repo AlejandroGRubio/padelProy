@@ -1,6 +1,6 @@
 <?php
 
-namespace Modelo\Servicios;
+namespace App\Modelo\Servicios;
 
 use App\Pista;
 

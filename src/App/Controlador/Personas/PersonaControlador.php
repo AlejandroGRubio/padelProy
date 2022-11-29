@@ -1,14 +1,14 @@
 <?php
 
-namespace Controlador\Personas;
+namespace App\Controlador\Personas;
 
 use App\Personas\Persona;
-use Modelo\Excepciones\actualizarPersonasException;
-use Modelo\Excepciones\PersonaNoEncontradaException;
-use Controlador\Excepciones\ParametrosDePersonaIncorrectosException;
-use Modelo\Personas\PersonaDAO;
-use Modelo\Personas\PersonaDAOMySql;
-use Vista\Personas\personaVista;
+use App\Modelo\Excepciones\actualizarPersonasException;
+use App\Modelo\Excepciones\PersonaNoEncontradaException;
+use App\Controlador\Excepciones\ParametrosDePersonaIncorrectosException;
+use App\Modelo\Personas\PersonaDAO;
+use App\Modelo\Personas\PersonaDAOMySql;
+use App\Vista\Personas\personaVista;
 
 
 class PersonaControlador

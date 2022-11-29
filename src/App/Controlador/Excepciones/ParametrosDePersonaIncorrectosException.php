@@ -1,6 +1,6 @@
 <?php
 
-namespace Controlador\Excepciones;
+namespace App\Controlador\Excepciones;
 
 class ParametrosDePersonaIncorrectosException extends \Exception
 {

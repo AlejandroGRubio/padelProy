@@ -10,28 +10,30 @@
     use App\Controlador\Personas;
     use App\Personas\Jugador;
     use App\LadoPreferido;
-    use Controlador\Personas\PersonaControlador;
-    use Modelo\Personas\PersonaDAOMySql;
-    use Vista\Personas\personaVista;
-    use Vista\plantilla\Plantilla;
-    use Vista\LoginVista;
+    use App\Controlador\Personas\PersonaControlador;
+    use App\Modelo\Personas\PersonaDAOMySql;
+    use App\Vista\Personas\personaVista;
+    use App\Vista\plantilla\Plantilla;
+    use App\Vista\LoginVista;
 
 
     //include_once "App/Personas/Persona.php";
 
-
-    spl_autoload_register(function ($class){
-
-        $ruta=__DIR__."/".$class;
-        //echo "<p/>";
-        $ruta.=".php";
-        $ruta= str_replace("\\", "/", $ruta);
-        //echo $ruta;
-        include_once($ruta);
+    include __DIR__."/vendor/autoload.php";
 
 
-
-    });
+//    spl_autoload_register(function ($class){
+//
+//        $ruta=__DIR__."/".$class;
+//        //echo "<p/>";
+//        $ruta.=".php";
+//        $ruta= str_replace("\\", "/", $ruta);
+//        //echo $ruta;
+//        include_once($ruta);
+//
+//
+//
+//    });
 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Controlador\Servicios;
+namespace App\Controlador\Servicios;
 
 class PistaControlador
 {

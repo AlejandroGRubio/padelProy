@@ -1,6 +1,6 @@
 <?php
 
-namespace Vista\plantilla;
+namespace App\Vista\plantilla;
 
 class Plantilla
 {
