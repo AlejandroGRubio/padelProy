@@ -8,7 +8,7 @@ use \PDO;
 abstract class PersonaDAO implements InterfazPersonas
 {
 
-    private PDO $conexion;
+    private $conexion;
 
     public function insertarPersona(Persona $persona): ?Persona
     {
@@ -18,6 +18,10 @@ abstract class PersonaDAO implements InterfazPersonas
     public function modificarPersona(Persona $persona): ?Persona
     {
         // TODO: Implement modificarPersona() method.
+    }
+
+    public function modificarTodasLasPersonas(array $elementosModificar){
+
     }
 
     public function borrarPersona(Persona $persona): ?Persona
@@ -38,6 +42,15 @@ abstract class PersonaDAO implements InterfazPersonas
     public function leerPersonaPorCorreo(string $correo):?Persona
     {
         // TODO: Implement leerPersonaPorCorreo() method.
+    }
+
+    private function convertirArrayPersona(array $datosPersona):?Persona{
+
+        if ($datosPersona['telefono'] === NULL){
+            $datosPersona['telefono'] = '';
+        }
+        return new Persona($datosPersona['dni'], $datosPersona['nombre'], $datosPersona['apellidos'], $datosPersona['correo'], $datosPersona['contrasenya'], $datosPersona['telefono'],);
+
     }
 
     public function leerTodasLasPersonas(): array
@@ -68,7 +81,7 @@ abstract class PersonaDAO implements InterfazPersonas
     /**
      * @return PDO
      */
-    public function getConexion(): PDO
+    public function getConexion()
     {
         return $this->conexion;
     }
@@ -76,9 +89,10 @@ abstract class PersonaDAO implements InterfazPersonas
     /**
      * @param PDO $conexion
      */
-    public function setConexion(PDO $conexion): void
+    public function setConexion($conexion): PersonaDAO
     {
         $this->conexion = $conexion;
+        return $this;
     }
 
 

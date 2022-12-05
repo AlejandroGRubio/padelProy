@@ -6,6 +6,7 @@
     namespace App;
 
     use App\Intervalo;
+    use App\Modelo\Personas\PersonaDAOMongoDB;
     use App\Personas\Persona;
     use App\Controlador\Personas;
     use App\Personas\Jugador;
@@ -20,6 +21,16 @@
     //include_once "App/Personas/Persona.php";
 
     include __DIR__."/vendor/autoload.php";
+
+    $mongodb = new PersonaDAOMongoDB();
+    $persona = new Persona('44121212A', 'Juan', 'Perez Gomez', 'Juan@gmail.com', '12234', '12345678');
+
+    //$mongodb->insertarPersona($persona);
+
+    $mongodb->modificarPersona($persona);
+
+    var_dump($mongodb->leerTodasLasPersonas());
+
 
 
 //    spl_autoload_register(function ($class){
@@ -167,7 +178,7 @@
    // echo '</br>';
    // echo parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-    $router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
+    //$router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
 
     if (parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) == "persona"){
         $persona = new PersonaControlador();
