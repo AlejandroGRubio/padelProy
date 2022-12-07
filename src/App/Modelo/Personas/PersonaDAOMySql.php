@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Modelo\Personas;
-require_once __DIR__ . "/../../datosConexionDB.php";
-require_once __DIR__ . "/../../datosConfiguracion.php";
+require_once __DIR__ . "../../../../datosConexionDB.php";
+require_once __DIR__ . "../../../../datosConfiguracion.php";
 
 use App\Personas\Persona;
 use \PDO;

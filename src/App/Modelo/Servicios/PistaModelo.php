@@ -4,7 +4,7 @@ namespace App\Modelo\Servicios;
 
 use App\Pista;
 
-class PistaDAO implements InterfazPista
+class PistaModelo
 {
 
     public function insertarPista(Pista $pista): ?Pista

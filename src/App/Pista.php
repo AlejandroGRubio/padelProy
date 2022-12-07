@@ -9,6 +9,7 @@ class Pista
     private Pareja $pareja2;
     private Pista $pista;
     private Intervalo $intervalo;
+    private string $cubierta;
 
     /**
      * @param Pareja $pareja1
@@ -16,12 +17,13 @@ class Pista
      * @param Pista $pista
      * @param Intervalo $intervalo
      */
-    public function __construct(Pareja $pareja1, Pareja $pareja2, Pista $pista, Intervalo $intervalo)
+    public function __construct(Pareja $pareja1, Pareja $pareja2, Pista $pista, Intervalo $intervalo, string $cubierta)
     {
         $this->pareja1 = $pareja1;
         $this->pareja2 = $pareja2;
         $this->pista = $pista;
         $this->intervalo = $intervalo;
+        $this->cubierta = $cubierta;
     }
 
 
@@ -87,6 +89,22 @@ class Pista
     public function setIntervalo(Intervalo $intervalo): void
     {
         $this->intervalo = $intervalo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCubierta(): string
+    {
+        return $this->cubierta;
+    }
+
+    /**
+     * @param string $cubierta
+     */
+    public function setCubierta(string $cubierta): void
+    {
+        $this->cubierta = $cubierta;
     }
 
 

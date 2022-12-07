@@ -5,6 +5,7 @@
   //  use \App\Persona;
     namespace App;
 
+    use App\Controlador\Servicios\PistaControlador;
     use App\Intervalo;
     use App\Modelo\Personas\PersonaDAOMongoDB;
     use App\Personas\Persona;
@@ -22,14 +23,14 @@
 
     include __DIR__."/vendor/autoload.php";
 
-    $mongodb = new PersonaDAOMongoDB();
-    $persona = new Persona('44121212A', 'Juan', 'Perez Gomez', 'Juan@gmail.com', '12234', '12345678');
+   // $mongodb = new PersonaDAOMongoDB();
+   // $persona = new Persona('44121212A', 'Juan', 'Perez Gomez', 'Juan@gmail.com', '12234', '12345678');
 
     //$mongodb->insertarPersona($persona);
 
-    $mongodb->modificarPersona($persona);
+    //$mongodb->modificarPersona($persona);
 
-    var_dump($mongodb->leerTodasLasPersonas());
+    //var_dump($mongodb->leerTodasLasPersonas());
 
 
 
@@ -161,7 +162,6 @@
     $router = new router();
     $router->guardarRutas('get','/', function (){
         $plantilla = new Plantilla("NuevaPlantilla");
-
         echo $plantilla->generarIndice();
 
 
@@ -173,12 +173,16 @@
     $router->guardarRutas('delete','/api/personas', [PersonaControlador::class, "borrar"]);
     $router->guardarRutas('put','/api/personas', [PersonaControlador::class, "modificar"]);
 
+    $router->guardarRutas('get','/api/pista', [PistaControlador::class, "mostrar"]);
+    $router->guardarRutas('post','/api/pista', [PistaControlador::class, "guardar"]);
+    $router->guardarRutas('delete','/api/pista', [PistaControlador::class, "borrar"]);
+    $router->guardarRutas('put','/api/pista', [PistaControlador::class, "modificar"]);
 
     //  echo $_SERVER["REQUEST_URI"];
    // echo '</br>';
    // echo parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
-    //$router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
+    $router->resolverRuta($_SERVER['REQUEST_URI'],$_SERVER['REQUEST_METHOD']);
 
     if (parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) == "persona"){
         $persona = new PersonaControlador();

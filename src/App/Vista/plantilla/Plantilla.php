@@ -29,14 +29,14 @@ class Plantilla
     <title>$titulo</title>
 
     <!-- CSS -->
-    <link rel='stylesheet' href='Vista/plantilla/assets/css/reset.css'>
-    <link rel='stylesheet' href='Vista/plantilla/assets/css/simplegrid.css'>
-    <link rel='stylesheet' href='Vista/plantilla/assets/css/icomoon.css'>
-    <link rel='stylesheet' href='Vista/plantilla/assets/css/lightcase.css'>
-    <link rel='stylesheet' href='Vista/plantilla/assets/js/owl-carousel/owl.carousel.css' />
-    <link rel='stylesheet' href='Vista/plantilla/assets/js/owl-carousel/owl.theme.css' />
-    <link rel='stylesheet' href='Vista/plantilla/assets/js/owl-carousel/owl.transitions.css' />
-    <link rel='stylesheet' href='Vista/plantilla/assets/style.css'>
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/css/reset.css'>
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/css/simplegrid.css'>
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/css/icomoon.css'>
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/css/lightcase.css'>
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/js/owl-carousel/owl.carousel.css' />
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/js/owl-carousel/owl.theme.css' />
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/js/owl-carousel/owl.transitions.css' />
+    <link rel='stylesheet' href='App/Vista/plantilla/assets/style.css'>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
@@ -103,7 +103,7 @@ class Plantilla
                                     <div class='fwidget'>
                                         <ul>
                                             <li><a href='#0'>Suspendisse nec lectus non</a></li>
-        <li><a href=''#0'>Phasellus euismod pulvinar</a></li>
+        <li><a href='#0'>Phasellus euismod pulvinar</a></li>
                                             <li><a href='#0'>Aliquam erat volutpat</a></li>
                                             <li><a href='#0'>Phasellus euismod pulvinar</a></li>
                                             <li><a href='#0'>Aliquam erat volutpat</a></li>
